@@ -145,5 +145,30 @@ function safeUrl(s){try{let u=new URL(s);return ["https:","http:"].includes(u.pr
 document.getElementById("adminProgram").addEventListener("change",renderAdminExercises);
 renderPrograms();
 </script>
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  // Sizning Firebase sozlamalaringiz
+  const firebaseConfig = {
+    apiKey: "AIzaSyB7GY6dsV_IFxHHtPi3TcFY_ngvFtjGC6w",
+    authDomain: "mardononlinecoaching.firebaseapp.com",
+    projectId: "mardononlinecoaching",
+    storageBucket: "mardononlinecoaching.firebasestorage.app",
+    messagingSenderId: "412803661369",
+    appId: "1:412803661369:web:85845627cf8642d26257e8",
+    measurementId: "G-ZLH30BPY8R"
+  };
+
+  // Firebase'ni ishga tushirish
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  
+  console.log("Firebase muvaffaqiyatli ulandi!", db);
+  
+  // Global o'zgaruvchiga qo'shamiz (saytdagi boshqa kodlar foydalanishi uchun)
+  window.db = db;
+ </script>
+ 
 </body>
 </html>
