@@ -16,9 +16,9 @@ h2{font-size:20px;margin:0 0 14px}h3{font-size:16px;margin:0 0 10px}.grid{displa
 .card:hover{border-color:var(--green);box-shadow:0 0 17px #60a5fa55}.card b{display:block;margin-bottom:7px}.price{color:var(--green);font-size:12px}
 input,textarea,select{width:100%;padding:13px;margin:6px 0 12px;border:1px solid #326baf;border-radius:11px;background:#041329;color:white;font-size:15px;outline:none}
 textarea{min-height:85px;resize:vertical}label{font-size:13px;color:var(--mint)}
-button,.linkbtn{border:0;border-radius:11px;padding:13px 16px;background:linear-gradient(100deg,#2563eb,#93c5fd);color:#031329;font-weight:bold;cursor:pointer;font-size:14px;text-decoration:none;display:inline-block}
+button,.linkbtn{border:0;border-radius:11px;padding:13px 16px;background:linear-gradient(100deg,#2563eb,#93c5fd);color:#031329;font-weight:bold;cursor:pointer;font-size:14px;text-decoration:none;display:inline-block;text-align:center}
 button.secondary{background:#163d70;color:#eaf3ff;border:1px solid #3976b8}button.danger{background:#6b1e2d;color:#fff}button:disabled{opacity:.5}
-.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.hidden{display:none!important}.notice{padding:11px;border-radius:10px;background:#12345e;color:#c7e2ff;font-size:13px;line-height:1.5;margin:10px 0}.warn{background:#12345e;color:#c7e2ff}.err{color:#fda4af;font-size:13px;min-height:18px}.exercise{padding:14px;border:1px solid #285b91;border-radius:13px;margin:10px 0;background:#0a1c36}.exercise p{color:var(--muted);white-space:pre-wrap;line-height:1.5}.pill{font-size:11px;color:#bfdbfe;border:1px solid #326baf;padding:5px 8px;border-radius:30px}
+.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.hidden{display:none!important}.notice{padding:11px;border-radius:10px;background:#12345e;color:#c7e2ff;font-size:13px;line-height:1.5;margin:10px 0}.err{color:#fda4af;font-size:13px;min-height:18px}.exercise{padding:14px;border:1px solid #285b91;border-radius:13px;margin:10px 0;background:#0a1c36}.exercise p{color:var(--muted);white-space:pre-wrap;line-height:1.5}.pill{font-size:11px;color:#bfdbfe;border:1px solid #326baf;padding:5px 8px;border-radius:30px}
 header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:15px 2px}.small{font-size:12px;color:var(--muted)}footer{text-align:center;color:#82a9d8;font-size:11px;margin-top:25px}
 @media(max-width:520px){main{padding:12px}.panel{padding:14px}.row{flex-direction:column}.row>*{width:100%}}
 </style>
@@ -33,7 +33,7 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
 
 <section id="home" class="panel">
  <header><h2>Yo‘nalishni tanlang</h2><button class="secondary" onclick="showAdminLogin()">ADMIN</button></header>
- <div class="notice warn">Onlayn rejim: Ma'lumotlar Google Cloud bazasida barcha foydalanuvchilar uchun umumiy saqlanadi.</div>
+ <div class="notice">Onlayn rejim: Ma'lumotlar bulutli bazada barcha foydalanuvchilar uchun umumiy saqlanadi.</div>
  <div id="programs" class="grid"></div>
 </section>
 
@@ -79,7 +79,7 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
 
 <section id="adminPage" class="panel hidden">
  <header><div><span class="pill">MURABBIY</span><h2 style="margin-top:9px">Admin panel</h2></div><button class="secondary" onclick="goHome()">Chiqish</button></header>
- <div class="notice">Bu yerdagi o‘zgarishlar bulutli bazaga saqlanadi va boshqa foydalanuvchilarga ham ko‘rinadi.</div>
+ <div class="notice">Bu yerdagi o‘zgarishlar bulutli bazaga saqlanadi va barcha telefonlarda ko‘rinadi.</div>
  <h3>Yo‘nalish parolini o‘zgartirish</h3>
  <label>Yo‘nalish</label><select id="adminProgram"></select>
  <label>Yangi yo‘nalish paroli</label><input id="programPassword" type="password" placeholder="Yangi parol">
@@ -93,11 +93,11 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
   <div><label>Takror / vaqt</label><input id="exReps" placeholder="Masalan: 8 yoki 10 soniya"></div>
   <div><label>Dam olish</label><input id="exRest" placeholder="Masalan: 2 daqiqa"></div>
  </div>
- <label>Videoni telefondan tanlash (Galereya / Fayllar)</label>
- <input id="exVideoFile" type="file" accept="video/*">
- <div class="small">Telefoningizdagi galereya yoki fayllardan video tanlang.</div>
+ <label>Video havolasi (Telegram bot linki yoki YouTube linki)</label>
+ <input id="exVideoUrl" type="url" placeholder="https://...">
+ <div class="small">Telegram botdan olingan linkni shu yerga qo‘ying. Barcha foydalanuvchilarda ishlaydi.</div>
  <label>Mashq uchun alohida parol</label><input id="exPassword" type="password" placeholder="Mashq paroli">
- <button onclick="addExercise()">Mashqni saqlash</button><div id="adminMessage" class="small"></div>
+ <button onclick="addExercise()">Mashqni saqlash</button><div id="adminMessage" class="small" style="margin-top:8px;color:#60a5fa"></div>
  <hr style="border-color:#244b31;margin:22px 0">
  <h3>Mashqlarni boshqarish — barcha qo‘shilgan mashqlar</h3><div id="adminExerciseList"></div>
  <hr style="border-color:#244b31;margin:22px 0">
@@ -127,14 +127,8 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
   window.db = db;
 
   const PROGRAMS = ["Handstand","Basic Calisthenics","Muscle Up","Full Planche & Front Lever","Maltese","One Arm Front Lever","Elite Training / Elite Skills"];
-  const VIDEO_DB="mardon_workout_video_db";
   let data = { adminHash:"", programs:{} };
   let selectedProgram="", selectedExercise=null, openProgram="";
-
-  function openVideoDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(VIDEO_DB,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains("videos"))req.result.createObjectStore("videos")};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
-  async function saveVideo(id,file){const dbv=await openVideoDB();return new Promise((resolve,reject)=>{const tx=dbv.transaction("videos","readwrite");tx.objectStore("videos").put(file,id);tx.oncomplete=()=>{dbv.close();resolve()};tx.onerror=()=>{dbv.close();reject(tx.error)}})}
-  async function getVideo(id){if(!id)return null;const dbv=await openVideoDB();return new Promise((resolve,reject)=>{const req=dbv.transaction("videos","readonly").objectStore("videos").get(id);req.onsuccess=()=>{dbv.close();resolve(req.result||null)};req.onerror=()=>{dbv.close();reject(req.error)}})}
-  async function removeVideo(id){if(!id)return;const dbv=await openVideoDB();return new Promise((resolve,reject)=>{const tx=dbv.transaction("videos","readwrite");tx.objectStore("videos").delete(id);tx.oncomplete=()=>{dbv.close();resolve()};tx.onerror=()=>{dbv.close();reject(tx.error)}})}
 
   async function loadDataFromCloud() {
     try {
@@ -170,12 +164,14 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
   function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return "h"+(h>>>0).toString(16)}
   
   function ensure(){
+    if(!data.programs) data.programs = {};
     PROGRAMS.forEach((p,i)=>{
       if(!data.programs[p]) data.programs[p]={passwordHash:hash("start-"+i+"-change-me"),exercises:[]};
     });
   }
 
   window.show = function(id) { ["home","directionLogin","directionPage","exerciseLogin","exercisePage","adminLogin","adminPage"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id)); }
+  
   window.renderPrograms = function() {
     let pContainer = document.getElementById("programs");
     if(pContainer) {
@@ -184,6 +180,7 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
     let ap = document.getElementById("adminProgram");
     if(ap) ap.innerHTML=PROGRAMS.map(p=>`<option>${p}</option>`).join("");
   }
+
   window.goHome = function() { show("home"); renderPrograms(); clearPasswords(); }
   window.clearPasswords = function() { ["directionPassword","exercisePassword","adminPassword","newAdminPassword"].forEach(id=>{let e=document.getElementById(id);if(e)e.value=""}); }
   
@@ -216,19 +213,23 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
     show("exerciseLogin");
   }
 
-  window.unlockExercise = async function() {
+  window.unlockExercise = function() {
     let e=data.programs[openProgram].exercises[selectedExercise];
     if(hash(document.getElementById("exercisePassword").value)!==e.passwordHash){document.getElementById("exerciseError").textContent="Mashq paroli noto‘g‘ri.";return}
+    
     let videoHtml="";
-    if(e.videoId){
-      try{
-        let blob=await getVideo(e.videoId);
-        if(blob){
-          let url=URL.createObjectURL(blob);
-          videoHtml=`<div class="exercise"><b>Mashq videosi</b><video controls playsinline style="width:100%;max-height:420px;border-radius:12px;margin-top:10px" src="${url}"></video></div>`;
-        }
-      }catch(err){videoHtml='<p class="small">Videoni ochib bo‘lmadi.</p>';}
+    let url = safeUrl(e.videoUrl);
+    if(url !== "#"){
+      videoHtml=`
+        <div class="exercise">
+          <b>Mashq videosi</b>
+          <video controls playsinline style="width:100%;max-height:420px;border-radius:12px;margin-top:10px;background:#000" src="${url}"></video>
+          <div style="margin-top:10px">
+            <a class="linkbtn" href="${url}" target="_blank" rel="noopener noreferrer" style="width:100%">Videoni alohida oynada ochish ↗</a>
+          </div>
+        </div>`;
     }
+
     document.getElementById("exerciseContent").innerHTML=`<h2>${escapeHtml(e.name)}</h2><div class="grid"><div class="exercise"><span class="small">SET</span><h3>${escapeHtml(e.sets||"—")}</h3></div><div class="exercise"><span class="small">TAKROR / VAQT</span><h3>${escapeHtml(e.reps||"—")}</h3></div><div class="exercise"><span class="small">DAM OLISH</span><h3>${escapeHtml(e.rest||"—")}</h3></div></div><div class="exercise"><b>Ko‘rsatma</b><p>${escapeHtml(e.desc||"Ko‘rsatma kiritilmagan.")}</p></div>${videoHtml}`;
     show("exercisePage");
   }
@@ -261,21 +262,30 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
     msg("Yo‘nalish paroli saqlandi.");
   }
 
-  window.addExercise = async function() {
-    let p=document.getElementById("adminProgram").value,n=document.getElementById("exName").value.trim(),pw=document.getElementById("exPassword").value,file=document.getElementById("exVideoFile").files[0];
+  window.addExercise = function() {
+    let p=document.getElementById("adminProgram").value;
+    let n=document.getElementById("exName").value.trim();
+    let pw=document.getElementById("exPassword").value;
+    let vUrl=document.getElementById("exVideoUrl").value.trim();
+
     if(!n||pw.length<4){msg("Mashq nomi va kamida 4 belgili parol kiriting.");return}
-    let videoId=file?("video_"+Date.now()+"_"+Math.random().toString(36).slice(2,8)):"";
-    try{
-      if(file) await saveVideo(videoId,file);
-      if(!data.programs[p].exercises) data.programs[p].exercises=[];
-      data.programs[p].exercises.push({id:Date.now(),name:n,desc:document.getElementById("exDesc").value,sets:document.getElementById("exSets").value,reps:document.getElementById("exReps").value,rest:document.getElementById("exRest").value,videoId,passwordHash:hash(pw)});
-      save();
-      ["exName","exDesc","exSets","exReps","exRest","exPassword"].forEach(id=>document.getElementById(id).value="");
-      document.getElementById("exVideoFile").value="";
-      renderAdminExercises();
-      renderPrograms();
-      msg("Mashq saqlandi va bulutli bazaga yuborildi!");
-    }catch(err){msg("Xatolik yuz berdi.");}
+    
+    if(!data.programs[p].exercises) data.programs[p].exercises=[];
+    data.programs[p].exercises.push({
+      id:Date.now(),
+      name:n,
+      desc:document.getElementById("exDesc").value,
+      sets:document.getElementById("exSets").value,
+      reps:document.getElementById("exReps").value,
+      rest:document.getElementById("exRest").value,
+      videoUrl:vUrl,
+      passwordHash:hash(pw)
+    });
+    save();
+    ["exName","exDesc","exSets","exReps","exRest","exPassword","exVideoUrl"].forEach(id=>document.getElementById(id).value="");
+    renderAdminExercises();
+    renderPrograms();
+    msg("Mashq va video havolasi saqlandi!");
   }
 
   window.renderAdminExercises = function() {
@@ -284,10 +294,8 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
     ap.innerHTML=PROGRAMS.map(p=>`<h3 style="margin-top:16px">${escapeHtml(p)}</h3>`+((data.programs[p]?.exercises||[]).length?data.programs[p].exercises.map(e=>`<div class="exercise"><b>${escapeHtml(e.name)}</b><button class="danger" style="float:right;padding:7px 10px" onclick="deleteExercise('${p.replace(/'/g,"\\'")}',${e.id})">O‘chirish</button><div class="small">Set: ${escapeHtml(e.sets||"—")} · Takror: ${escapeHtml(e.reps||"—")}</div></div>`).join(""):'<div class="small">Mashq yo‘q</div>')).join("");
   }
 
-  window.deleteExercise = async function(p,id) {
+  window.deleteExercise = function(p,id) {
     if(!confirm("Ushbu mashq o‘chirilsinmi?"))return;
-    let ex=data.programs[p].exercises.find(e=>e.id===id);
-    if(ex&&ex.videoId) await removeVideo(ex.videoId);
     data.programs[p].exercises=data.programs[p].exercises.filter(e=>e.id!==id);
     save();
     renderAdminExercises();
@@ -305,6 +313,7 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
 
   window.msg = function(t) { document.getElementById("adminMessage").textContent=t; }
   window.escapeHtml = function(s) { return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+  window.safeUrl = function(s) { try{let u=new URL(s);return ["https:","http:"].includes(u.protocol)?u.href:"#"}catch(e){return "#"} }
 
   let apSelect = document.getElementById("adminProgram");
   if(apSelect) apSelect.addEventListener("change", renderAdminExercises);
@@ -312,4 +321,5 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
   loadDataFromCloud();
 </script>
 </body>
-</html>
+                                          </html>
+                                          
