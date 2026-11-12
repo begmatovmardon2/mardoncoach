@@ -312,7 +312,7 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
   }
 
   window.msg = function(t) { document.getElementById("adminMessage").textContent=t; }
-  window.escapeHtml = function(s) { return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+  window.escapeHtml = function(s) { return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
   window.safeUrl = function(s) { try{let u=new URL(s);return ["https:","http:"].includes(u.protocol)?u.href:"#"}catch(e){return "#"} }
 
   let apSelect = document.getElementById("adminProgram");
@@ -321,5 +321,4 @@ header{display:flex;justify-content:space-between;align-items:center;gap:10px;ma
   loadDataFromCloud();
 </script>
 </body>
-                                          </html>
-                                          
+</html>
