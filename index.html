@@ -1,324 +1,328 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#06152b">
-<title>Mardon_workout | Coaching App</title>
-<style>
- :root{--bg:#06152b;--panel:#0a1d38;--panel2:#102b50;--line:#245b9a;--green:#60a5fa;--mint:#bfdbfe;--text:#eff6ff;--muted:#a9c4e8;--red:#fb7185;--gold:#fbbf24}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,#123d75 0,transparent 36%),radial-gradient(circle at 90% 20%,#102d5a 0,transparent 32%),linear-gradient(145deg,#020817,#071a35 55%,#031126);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}
-main{max-width:900px;margin:auto;padding:18px 14px 50px}.hero{padding:26px 16px;text-align:center;border:1px solid #3176bd;border-radius:24px;background:linear-gradient(135deg,#0b2b52,#081a35);box-shadow:0 0 30px #3b82f644}
-h1{font-size:clamp(25px,7vw,42px);margin:0 0 8px;white-space:normal;text-shadow:0 0 16px #3b82f6}.tag{color:var(--green);font-size:12px;letter-spacing:2px;font-weight:bold}.muted{color:var(--muted);line-height:1.6;font-size:13px}
-.panel{margin-top:16px;padding:18px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#0b2140ee,#07162dee);box-shadow:0 0 20px #3b82f622}
-h2{font-size:20px;margin:0 0 14px}h3{font-size:16px;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}
-.card{padding:15px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#12345e,#0a1c36);cursor:pointer;text-align:left;color:var(--text);min-height:90px}
-.card:hover{border-color:var(--green);box-shadow:0 0 17px #60a5fa55}.card b{display:block;margin-bottom:7px}.price{color:var(--green);font-size:12px}
-input,textarea,select{width:100%;padding:13px;margin:6px 0 12px;border:1px solid #326baf;border-radius:11px;background:#041329;color:white;font-size:15px;outline:none}
-textarea{min-height:85px;resize:vertical}label{font-size:13px;color:var(--mint)}
-button,.linkbtn{border:0;border-radius:11px;padding:13px 16px;background:linear-gradient(100deg,#2563eb,#93c5fd);color:#031329;font-weight:bold;cursor:pointer;font-size:14px;text-decoration:none;display:inline-block;text-align:center}
-button.secondary{background:#163d70;color:#eaf3ff;border:1px solid #3976b8}button.danger{background:#6b1e2d;color:#fff}button:disabled{opacity:.5}
-.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.hidden{display:none!important}.notice{padding:11px;border-radius:10px;background:#12345e;color:#c7e2ff;font-size:13px;line-height:1.5;margin:10px 0}.err{color:#fda4af;font-size:13px;min-height:18px}.exercise{padding:14px;border:1px solid #285b91;border-radius:13px;margin:10px 0;background:#0a1c36}.exercise p{color:var(--muted);white-space:pre-wrap;line-height:1.5}.pill{font-size:11px;color:#bfdbfe;border:1px solid #326baf;padding:5px 8px;border-radius:30px}
-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:15px 2px}.small{font-size:12px;color:var(--muted)}footer{text-align:center;color:#82a9d8;font-size:11px;margin-top:25px}
-@media(max-width:520px){main{padding:12px}.panel{padding:14px}.row{flex-direction:column}.row>*{width:100%}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARDON WORKOUT — Pro Calisthenics Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+            user-select: none;
+        }
+        .glass-card {
+            background: rgba(24, 24, 27, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .accent-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+        }
+        .accent-text {
+            background: linear-gradient(135deg, #fb923c 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
-<body>
-<main>
-<section class="hero">
- <div class="tag">ONLINE COACHING · STATIC SKILLS · STRENGTH</div>
- <h1>Mardon_workout</h1>
- <div class="muted">Shaxsiy mashg‘ulot platformasi</div>
-</section>
+<body class="min-h-screen flex flex-col">
 
-<section id="home" class="panel">
- <header><h2>Yo‘nalishni tanlang</h2><button class="secondary" onclick="showAdminLogin()">ADMIN</button></header>
- <div class="notice">Onlayn rejim: Ma'lumotlar bulutli bazada barcha foydalanuvchilar uchun umumiy saqlanadi.</div>
- <div id="programs" class="grid"></div>
-</section>
+    <!-- 1. KIRISH EKRANI (APP GATEKEEPER - BOSHIDA PAROL SO'RAYDI) -->
+    <div id="entryGate" class="fixed inset-0 z-50 bg-zinc-950 flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-md rounded-3xl p-8 text-center shadow-2xl border border-zinc-800">
+            <div id="secretAdminTrigger" class="w-20 h-20 accent-gradient rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg shadow-orange-600/20 cursor-pointer">
+                <i class="fas fa-dumbbell text-3xl text-white"></i>
+            </div>
+            <h1 class="text-3xl font-black tracking-tight mb-1">MARDON <span class="accent-text">WORKOUT</span></h1>
+            <p class="text-zinc-400 text-xs uppercase tracking-widest mb-8">Official Training System</p>
 
-<section id="directionLogin" class="panel hidden">
- <button class="secondary" onclick="goHome()">← Orqaga</button>
- <h2 id="directionTitle" style="margin-top:15px">Yo‘nalish</h2>
- <label>Yo‘nalish paroli</label><input id="directionPassword" type="password" placeholder="Parolni kiriting">
- <button onclick="unlockDirection()">Kirish</button><div id="directionError" class="err"></div>
-</section>
+            <div class="space-y-4 text-left">
+                <div>
+                    <label class="text-xs font-semibold text-zinc-400 uppercase ml-1">Kirish parolini kiriting</label>
+                    <div class="relative mt-1.5">
+                        <input type="password" id="appPasswordInput" placeholder="••••••••" 
+                            class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-orange-500 transition text-center text-lg tracking-widest">
+                    </div>
+                </div>
+                <p id="gateError" class="text-red-500 text-xs text-center hidden">Parol noto'g'ri! Qaytadan urinib ko'ring.</p>
+                <button onclick="checkAppAccess()" class="w-full accent-gradient hover:opacity-90 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-orange-600/25 flex items-center justify-center gap-2">
+                    <i class="fas fa-lock-open"></i> PLATFORMAGA KIRISH
+                </button>
+            </div>
+            <p class="text-zinc-600 text-[11px] mt-6">Parolni olish uchun administratorga murojaat qiling</p>
+        </div>
+    </div>
 
-<section id="directionPage" class="panel hidden">
- <header><div><span class="pill">YO‘NALISH OCHILDI</span><h2 id="openDirectionTitle" style="margin-top:9px"></h2></div><button class="secondary" onclick="goHome()">Chiqish</button></header>
- <p class="muted">Mashqni ochish uchun uning alohida parolini kiriting.</p>
- <div id="exerciseList"></div>
-</section>
+    <!-- ASOSIY HEADER -->
+    <header class="sticky top-0 z-30 glass-card border-b border-zinc-800/80 px-4 py-4">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div onclick="handleHeaderTap()" class="flex items-center gap-3 cursor-pointer">
+                <div class="w-10 h-10 accent-gradient rounded-xl flex items-center justify-center font-black text-white shadow">
+                    MW
+                </div>
+                <div>
+                    <h1 class="font-black text-lg leading-none tracking-tight">MARDON <span class="accent-text">WORKOUT</span></h1>
+                    <span id="serverStatusBadge" class="text-[10px] text-emerald-400 flex items-center gap-1 mt-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Server ulangan
+                    </span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="syncFromServer(true)" title="Serverdan yangilash" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl text-zinc-400 hover:text-white transition">
+                    <i class="fas fa-sync-alt text-sm"></i>
+                </button>
+                <button onclick="logoutApp()" title="Chiqish" class="p-2.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-xl text-zinc-400 hover:text-red-400 transition">
+                    <i class="fas fa-sign-out-alt text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<section id="exerciseLogin" class="panel hidden">
- <button class="secondary" onclick="backToDirection()">← Orqaga</button>
- <h2 id="exerciseLoginTitle" style="margin-top:15px"></h2>
- <label>Mashq paroli</label><input id="exercisePassword" type="password" placeholder="Mashq parolini kiriting">
- <button onclick="unlockExercise()">Mashqni ochish</button><div id="exerciseError" class="err"></div>
-</section>
+    <!-- ASOSIY KONTENT (2 TA YO'NALISH) -->
+    <main class="flex-1 max-w-4xl w-full mx-auto p-4 py-8">
+        
+        <!-- YO'NALISHLAR RO'YXATI -->
+        <div id="programsView" class="space-y-6">
+            <div class="mb-2">
+                <h2 class="text-xl font-bold text-white">Yo'nalishni tanlang</h2>
+                <p class="text-zinc-400 text-sm">O'zingizga kerakli professional dasturni boshlang</p>
+            </div>
 
-<section id="exercisePage" class="panel hidden">
- <button class="secondary" onclick="backToDirection()">← Yo‘nalishga qaytish</button>
- <div id="exerciseContent" style="margin-top:16px"></div>
-</section>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 1-YO'NALISH: FRONT SKILL -->
+                <div onclick="openProgram('front_skill')" class="glass-card rounded-3xl p-6 border border-zinc-800 hover:border-orange-500/60 transition cursor-pointer group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-orange-500/20 transition"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-orange-500/15 text-orange-400 text-xs font-bold rounded-full border border-orange-500/20">
+                            01 • PROGRAM
+                        </span>
+                        <div class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center group-hover:bg-orange-500 group-hover:text-white transition">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-3 tracking-wide group-hover:text-orange-400 transition">
+                        FRONT SKILL
+                    </h3>
+                    <p class="text-zinc-300 text-sm leading-relaxed bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800/80">
+                        In this course, a workout schedule designed to take you from level 0 to pro level.
+                        <span class="block text-zinc-400 text-xs mt-1.5 italic">
+                            (Bu kursda siz 0 dan pro darajagacha chiqishingiz uchun mo'ljallangan mashqlar jadvali)
+                        </span>
+                    </p>
+                    <div class="mt-4 flex items-center justify-between text-xs text-zinc-400">
+                        <span><i class="fas fa-layer-group text-orange-500 mr-1"></i> <span id="frontCount">0</span> ta mashq</span>
+                        <span class="text-orange-400 font-semibold">Ochish →</span>
+                    </div>
+                </div>
 
-<section id="adminLogin" class="panel hidden">
- <button class="secondary" onclick="goHome()">← Orqaga</button>
- <h2 style="margin-top:15px">Murabbiy Admin paneli</h2>
- <div id="firstAdminSetup" class="hidden">
-  <div class="notice">Birinchi marta ochilyapti. Admin parolini o‘zingiz yarating.</div>
-  <label>Yangi admin paroli</label><input id="newAdminPassword" type="password" placeholder="Kamida 8 belgi">
-  <button onclick="createAdmin()">Admin parolini yaratish</button>
- </div>
- <div id="adminSignIn">
-  <label>Admin paroli</label><input id="adminPassword" type="password" placeholder="Admin parolini kiriting">
-  <button onclick="loginAdmin()">Kirish</button>
- </div>
- <div id="adminLoginError" class="err"></div>
-</section>
+                <!-- 2-YO'NALISH: PLANCHE SKILL -->
+                <div onclick="openProgram('planche_skill')" class="glass-card rounded-3xl p-6 border border-zinc-800 hover:border-red-500/60 transition cursor-pointer group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-red-500/20 transition"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-red-500/15 text-red-400 text-xs font-bold rounded-full border border-red-500/20">
+                            02 • PROGRAM
+                        </span>
+                        <div class="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center group-hover:bg-red-500 group-hover:text-white transition">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-3 tracking-wide group-hover:text-red-400 transition">
+                        PLANCHE SKILL
+                    </h3>
+                    <p class="text-zinc-300 text-sm leading-relaxed bg-zinc-900/80 p-4 rounded-2xl border border-zinc-800/80">
+                        In this course, a workout schedule designed to take you from level 0 to pro level.
+                        <span class="block text-zinc-400 text-xs mt-1.5 italic">
+                            (Bu kursda siz 0 dan pro darajagacha chiqishingiz uchun mo'ljallangan mashqlar jadvali)
+                        </span>
+                    </p>
+                    <div class="mt-4 flex items-center justify-between text-xs text-zinc-400">
+                        <span><i class="fas fa-layer-group text-red-500 mr-1"></i> <span id="plancheCount">0</span> ta mashq</span>
+                        <span class="text-red-400 font-semibold">Ochish →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<section id="adminPage" class="panel hidden">
- <header><div><span class="pill">MURABBIY</span><h2 style="margin-top:9px">Admin panel</h2></div><button class="secondary" onclick="goHome()">Chiqish</button></header>
- <div class="notice">Bu yerdagi o‘zgarishlar bulutli bazaga saqlanadi va barcha telefonlarda ko‘rinadi.</div>
- <h3>Yo‘nalish parolini o‘zgartirish</h3>
- <label>Yo‘nalish</label><select id="adminProgram"></select>
- <label>Yangi yo‘nalish paroli</label><input id="programPassword" type="password" placeholder="Yangi parol">
- <button class="secondary" onclick="saveProgramPassword()">Yo‘nalish parolini saqlash</button>
- <hr style="border-color:#244b31;margin:22px 0">
- <h3>Mashq qo‘shish — cheklanmagan miqdorda</h3>
- <label>Mashq nomi</label><input id="exName" placeholder="Masalan: Planche hold">
- <label>Mashq tavsifi / ko‘rsatma</label><textarea id="exDesc" placeholder="Bajarish tartibi, texnika va eslatmalar"></textarea>
- <div class="row">
-  <div><label>Set</label><input id="exSets" placeholder="Masalan: 4"></div>
-  <div><label>Takror / vaqt</label><input id="exReps" placeholder="Masalan: 8 yoki 10 soniya"></div>
-  <div><label>Dam olish</label><input id="exRest" placeholder="Masalan: 2 daqiqa"></div>
- </div>
- <label>Video havolasi (Telegram bot linki yoki YouTube linki)</label>
- <input id="exVideoUrl" type="url" placeholder="https://...">
- <div class="small">Telegram botdan olingan linkni shu yerga qo‘ying. Barcha foydalanuvchilarda ishlaydi.</div>
- <label>Mashq uchun alohida parol</label><input id="exPassword" type="password" placeholder="Mashq paroli">
- <button onclick="addExercise()">Mashqni saqlash</button><div id="adminMessage" class="small" style="margin-top:8px;color:#60a5fa"></div>
- <hr style="border-color:#244b31;margin:22px 0">
- <h3>Mashqlarni boshqarish — barcha qo‘shilgan mashqlar</h3><div id="adminExerciseList"></div>
- <hr style="border-color:#244b31;margin:22px 0">
- <h3>Admin parolini almashtirish</h3>
- <label>Yangi admin paroli</label><input id="changeAdminPassword" type="password" placeholder="Kamida 8 belgi">
- <button class="secondary" onclick="changeAdmin()">Admin parolini almashtirish</button>
-</section>
-<footer>Mardon_workout · ONLINE COACHING</footer>
-</main>
+        <!-- MASHQLAR RO'YXATI (TANLANGAN YO'NALISH ICHIDA) -->
+        <div id="exercisesView" class="hidden space-y-6">
+            <button onclick="backToPrograms()" class="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white bg-zinc-900 px-4 py-2 rounded-xl border border-zinc-800 transition">
+                <i class="fas fa-arrow-left"></i> Orqaga qaytish
+            </button>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+            <div class="glass-card rounded-3xl p-6 border border-zinc-800">
+                <h2 id="selectedProgramTitle" class="text-2xl font-black text-white mb-2">FRONT SKILL</h2>
+                <p class="text-zinc-300 text-sm">
+                    In this course, a workout schedule designed to take you from level 0 to pro level.
+                    <span class="block text-zinc-400 text-xs mt-1 italic">
+                        (Bu kursda siz 0 dan pro darajagacha chiqishingiz uchun mo'ljallangan mashqlar jadvali)
+                    </span>
+                </p>
+            </div>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyB7GY6dsV_IFxHHtPi3TcFY_ngvFtjGC6w",
-    authDomain: "mardononlinecoaching.firebaseapp.com",
-    projectId: "mardononlinecoaching",
-    storageBucket: "mardononlinecoaching.firebasestorage.app",
-    messagingSenderId: "412803661369",
-    appId: "1:412803661369:web:85845627cf8642d26257e8",
-    measurementId: "G-ZLH30BPY8R"
-  };
+            <div id="exercisesList" class="grid grid-cols-1 gap-4">
+                <!-- Mashqlar JS orqali yuklanadi -->
+            </div>
+        </div>
+    </main>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  window.db = db;
+    <!-- MASHQ TAFSILOTLARI MODALI -->
+    <div id="exerciseModal" class="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="glass-card w-full max-w-lg rounded-3xl p-6 border border-zinc-700 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-4">
+                <span id="modalLevelBadge" class="px-3 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-full">LEVEL 1</span>
+                <button onclick="closeExerciseModal()" class="w-8 h-8 rounded-full bg-zinc-800 text-zinc-400 hover:text-white flex items-center justify-center">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <h3 id="modalExTitle" class="text-xl font-bold text-white mb-3">Mashq nomi</h3>
+            <div id="modalMediaContainer" class="mb-4 rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800"></div>
+            <div class="bg-zinc-900/90 p-4 rounded-2xl border border-zinc-800 space-y-2">
+                <div class="text-xs font-bold text-orange-400 uppercase">Texnika va Setlar:</div>
+                <p id="modalExDesc" class="text-sm text-zinc-300 whitespace-pre-line leading-relaxed"></p>
+            </div>
+        </div>
+    </div>
 
-  const PROGRAMS = ["Handstand","Basic Calisthenics","Muscle Up","Full Planche & Front Lever","Maltese","One Arm Front Lever","Elite Training / Elite Skills"];
-  let data = { adminHash:"", programs:{} };
-  let selectedProgram="", selectedExercise=null, openProgram="";
+    <!-- ADMIN PANEL MODALI (SERVER VA PAROL BOSHQARUVI) -->
+    <div id="adminModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="glass-card w-full max-w-2xl rounded-3xl p-6 border border-zinc-700 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-4 mb-5">
+                <div>
+                    <h3 class="text-lg font-black text-white">MARDON WORKOUT — ADMIN & SERVER</h3>
+                    <p class="text-xs text-zinc-400">Kirish paroli, server ulanishi va mashqlarni boshqarish</p>
+                </div>
+                <button onclick="closeAdminModal()" class="w-9 h-9 rounded-xl bg-zinc-800 text-zinc-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
 
-  async function loadDataFromCloud() {
-    try {
-      const docRef = doc(db, "appData", "mainStore");
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        data = docSnap.data();
-      } else {
-        PROGRAMS.forEach((p,i)=>{
-          if(!data.programs[p]) data.programs[p]={passwordHash:hash("start-"+i+"-change-me"),exercises:[]};
-        });
-        await saveDataToCloud();
-      }
-    } catch(e) {
-      console.error("Yuklashda xato:", e);
-    }
-    ensure();
-    renderPrograms();
-  }
+            <!-- 1. Kirish paroli va Server URL -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-zinc-900/70 p-4 rounded-2xl border border-zinc-800">
+                <div>
+                    <label class="text-xs text-zinc-400 block mb-1">Ilovaga kirish paroli (User Password)</label>
+                    <input type="text" id="adminAppPassInput" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="text-xs text-zinc-400 block mb-1">Server API / Firebase JSON URL</label>
+                    <input type="text" id="adminServerUrlInput" placeholder="https://mardon-workout-default-rtdb.firebaseio.com/data.json" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <div class="md:col-span-2 flex justify-end">
+                    <button onclick="saveServerAndPassSettings()" class="px-4 py-2 accent-gradient text-white text-xs font-bold rounded-xl">
+                        Sozlamalarni Saqlash va Serverga Yuborish
+                    </button>
+                </div>
+            </div>
 
-  async function saveDataToCloud() {
-    try {
-      await setDoc(doc(db, "appData", "mainStore"), data);
-    } catch(e) {
-      console.error("Saqlashda xato:", e);
-    }
-  }
+            <!-- 2. Yangi mashq qo'shish -->
+            <div class="space-y-3 bg-zinc-900/70 p-4 rounded-2xl border border-zinc-800 mb-6">
+                <h4 class="text-sm font-bold text-orange-400">+ Yangi mashq qo'shish</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <select id="newExProgram" class="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white">
+                        <option value="front_skill">FRONT SKILL</option>
+                        <option value="planche_skill">PLANCHE SKILL</option>
+                    </select>
+                    <input type="text" id="newExTitle" placeholder="Mashq nomi (masalan: Tuck Front Lever)" class="bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <input type="text" id="newExMedia" placeholder="YouTube link yoki Rasm URL (ixtiyoriy)" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white">
+                <textarea id="newExDesc" rows="3" placeholder="Mashq bajarish tartibi, set va takrorlar soni..." class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white"></textarea>
+                <button onclick="addExercise()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold rounded-xl transition">
+                    Mashqni Qo'shish va Serverga Saqlash
+                </button>
+            </div>
 
-  function save() {
-    saveDataToCloud();
-  }
+            <!-- 3. Mavjud mashqlar ro'yxati -->
+            <div>
+                <h4 class="text-sm font-bold text-zinc-300 mb-2">Barcha mashqlar</h4>
+                <div id="adminExerciseList" class="space-y-2 max-h-48 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
 
-  function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return "h"+(h>>>0).toString(16)}
-  
-  function ensure(){
-    if(!data.programs) data.programs = {};
-    PROGRAMS.forEach((p,i)=>{
-      if(!data.programs[p]) data.programs[p]={passwordHash:hash("start-"+i+"-change-me"),exercises:[]};
-    });
-  }
+    <script>
+        // --- STANDART MA'LUMOTLAR VA SERVER KONFIGURATSIYASI ---
+        const DEFAULT_SERVER_URL = ""; // Agar tayyor Firebase/API URL bo'lsa shu yerga yozishingiz mumkin
+        const ADMIN_MASTER_PASS = "mardon_admin";
 
-  window.show = function(id) { ["home","directionLogin","directionPage","exerciseLogin","exercisePage","adminLogin","adminPage"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id)); }
-  
-  window.renderPrograms = function() {
-    let pContainer = document.getElementById("programs");
-    if(pContainer) {
-      pContainer.innerHTML=PROGRAMS.map((p,i)=>`<button class="card" onclick="chooseProgram(${i})"><b>${p}</b><span class="price">${(data.programs[p]?.exercises||[]).length} ta mashq</span></button>`).join("");
-    }
-    let ap = document.getElementById("adminProgram");
-    if(ap) ap.innerHTML=PROGRAMS.map(p=>`<option>${p}</option>`).join("");
-  }
+        let appState = {
+            entryPassword: "mardon2026", // Ilovaga kirish paroli
+            serverUrl: DEFAULT_SERVER_URL,
+            exercises: {
+                front_skill: [
+                    { id: 1, title: "01. Scapula Pulls & Active Hang", desc: "4 sets x 10-12 reps\nDam olish: 90 soniya. Kuraklarni pastga va orqaga tortish texnikasi.", media: "" },
+                    { id: 2, title: "02. Tuck Front Lever Hold", desc: "5 sets x 15-20 soniya\nBelni tekis ushlash va qo'llarni bukmaslik.", media: "" },
+                    { id: 3, title: "03. Advanced Tuck Front Lever", desc: "4 sets x 12-15 soniya\nTizzalarni biroz oldinga ochib muvozanat saqlash.", media: "" },
+                    { id: 4, title: "04. Straddle & Full Front Lever", desc: "5 sets x 5-10 soniya\nPro daraja: tana to'liq gorizontal holatda.", media: "" }
+                ],
+                planche_skill: [
+                    { id: 5, title: "01. Planche Lean (Protraction)", desc: "4 sets x 20-30 soniya\nYelkalarni maksimal oldinga chiqarish va kuraklarni ochish.", media: "" },
+                    { id: 6, title: "02. Frog Stand to Tuck Planche", desc: "5 sets x 10-15 soniya\nTirsaklarni to'liq qulflab tizzalarni ko'krakka tortish.", media: "" },
+                    { id: 7, title: "03. Advanced Tuck Planche", desc: "4 sets x 8-12 soniya\nBelni tekislash va og'irlik markazini oldinga surish.", media: "" },
+                    { id: 8, title: "04. Straddle & Full Planche", desc: "5 sets x 5-8 soniya\nPro daraja: oyoqlar to'liq cho'zilgan holatda ushlash.", media: "" }
+                ]
+            }
+        };
 
-  window.goHome = function() { show("home"); renderPrograms(); clearPasswords(); }
-  window.clearPasswords = function() { ["directionPassword","exercisePassword","adminPassword","newAdminPassword"].forEach(id=>{let e=document.getElementById(id);if(e)e.value=""}); }
-  
-  window.chooseProgram = function(i) {
-    selectedProgram=PROGRAMS[i];
-    document.getElementById("directionTitle").textContent=selectedProgram;
-    document.getElementById("directionPassword").value="";
-    document.getElementById("directionError").textContent="";
-    show("directionLogin");
-  }
+        let currentProgram = null;
+        let tapCount = 0;
+        let tapTimer = null;
 
-  window.unlockDirection = function() {
-    if(hash(document.getElementById("directionPassword").value)!==data.programs[selectedProgram].passwordHash){document.getElementById("directionError").textContent="Parol noto‘g‘ri.";return}
-    openProgram=selectedProgram;
-    renderExercises();
-    show("directionPage");
-  }
+        // --- ISHGA TUSHIRISH ---
+        window.onload = async function() {
+            loadLocalData();
+            await syncFromServer(false);
+            updateCounts();
 
-  window.renderExercises = function() {
-    document.getElementById("openDirectionTitle").textContent=openProgram;
-    let list=data.programs[openProgram]?.exercises || [];
-    document.getElementById("exerciseList").innerHTML=list.length?list.map((e,i)=>`<div class="exercise"><b>${escapeHtml(e.name)}</b><div class="small">Alohida parol bilan himoyalangan</div><button style="margin-top:10px" onclick="chooseExercise(${i})">Mashqni ochish</button></div>`).join(""):'<p class="muted">Hozircha mashq kiritilmagan. Murabbiy Admin paneldan qo‘shadi.</p>';
-  }
+            // Agar oldin parol kiritilgan bo'lsa (sessiya davomida)
+            if (sessionStorage.getItem("mw_unlocked") === "true") {
+                document.getElementById("entryGate").classList.add("hidden");
+            }
 
-  window.chooseExercise = function(i) {
-    selectedExercise=i;
-    document.getElementById("exerciseLoginTitle").textContent=data.programs[openProgram].exercises[i].name;
-    document.getElementById("exercisePassword").value="";
-    document.getElementById("exerciseError").textContent="";
-    show("exerciseLogin");
-  }
+            // Enter tugmasi bilan kirish
+            document.getElementById("appPasswordInput").addEventListener("keypress", function(e) {
+                if (e.key === "Enter") checkAppAccess();
+            });
 
-  window.unlockExercise = function() {
-    let e=data.programs[openProgram].exercises[selectedExercise];
-    if(hash(document.getElementById("exercisePassword").value)!==e.passwordHash){document.getElementById("exerciseError").textContent="Mashq paroli noto‘g‘ri.";return}
-    
-    let videoHtml="";
-    let url = safeUrl(e.videoUrl);
-    if(url !== "#"){
-      videoHtml=`
-        <div class="exercise">
-          <b>Mashq videosi</b>
-          <video controls playsinline style="width:100%;max-height:420px;border-radius:12px;margin-top:10px;background:#000" src="${url}"></video>
-          <div style="margin-top:10px">
-            <a class="linkbtn" href="${url}" target="_blank" rel="noopener noreferrer" style="width:100%">Videoni alohida oynada ochish ↗</a>
-          </div>
-        </div>`;
-    }
+            // Kirish ekranidagi logotipga 5 marta bosilsa Admin ochiladi
+            document.getElementById("secretAdminTrigger").addEventListener("click", handleHeaderTap);
+        };
 
-    document.getElementById("exerciseContent").innerHTML=`<h2>${escapeHtml(e.name)}</h2><div class="grid"><div class="exercise"><span class="small">SET</span><h3>${escapeHtml(e.sets||"—")}</h3></div><div class="exercise"><span class="small">TAKROR / VAQT</span><h3>${escapeHtml(e.reps||"—")}</h3></div><div class="exercise"><span class="small">DAM OLISH</span><h3>${escapeHtml(e.rest||"—")}</h3></div></div><div class="exercise"><b>Ko‘rsatma</b><p>${escapeHtml(e.desc||"Ko‘rsatma kiritilmagan.")}</p></div>${videoHtml}`;
-    show("exercisePage");
-  }
+        function loadLocalData() {
+            const saved = localStorage.getItem("mardon_workout_db");
+            if (saved) {
+                try {
+                    appState = JSON.parse(saved);
+                } catch (e) { console.error(e); }
+            }
+        }
 
-  window.backToDirection = function() { renderExercises(); show("directionPage"); }
-  window.showAdminLogin = function() { let first=!data.adminHash; document.getElementById("firstAdminSetup").classList.toggle("hidden",!first); document.getElementById("adminSignIn").classList.toggle("hidden",first); document.getElementById("adminLoginError").textContent=""; show("adminLogin"); }
-  
-  window.createAdmin = function() {
-    let p=document.getElementById("newAdminPassword").value;
-    if(p.length<8){document.getElementById("adminLoginError").textContent="Parol kamida 8 belgidan iborat bo‘lsin.";return}
-    data.adminHash=hash(p);
-    save();
-    document.getElementById("adminLoginError").textContent="Admin paroli yaratildi. Endi kiring.";
-    document.getElementById("firstAdminSetup").classList.add("hidden");
-    document.getElementById("adminSignIn").classList.remove("hidden");
-  }
+        function saveLocalData() {
+            localStorage.setItem("mardon_workout_db", JSON.stringify(appState));
+            updateCounts();
+        }
 
-  window.loginAdmin = function() {
-    if(hash(document.getElementById("adminPassword").value)!==data.adminHash){document.getElementById("adminLoginError").textContent="Admin paroli noto‘g‘ri.";return}
-    renderAdminExercises();
-    show("adminPage");
-  }
+        // --- SERVERGA ULASH (GET / PUT SINXRONIZATSIYA) ---
+        async function syncFromServer(showAlert = false) {
+            const url = appState.serverUrl || DEFAULT_SERVER_URL;
+            const badge = document.getElementById("serverStatusBadge");
 
-  window.saveProgramPassword = function() {
-    let p=document.getElementById("adminProgram").value,v=document.getElementById("programPassword").value;
-    if(v.length<4){msg("Yo‘nalish paroli kamida 4 belgi bo‘lsin.");return}
-    data.programs[p].passwordHash=hash(v);
-    save();
-    document.getElementById("programPassword").value="";
-    msg("Yo‘nalish paroli saqlandi.");
-  }
+            if (!url) {
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Lokal rejim (Server URL kiritilmagan)`;
+                badge.className = "text-[10px] text-amber-400 flex items-center gap-1 mt-1";
+                return;
+            }
 
-  window.addExercise = function() {
-    let p=document.getElementById("adminProgram").value;
-    let n=document.getElementById("exName").value.trim();
-    let pw=document.getElementById("exPassword").value;
-    let vUrl=document.getElementById("exVideoUrl").value.trim();
-
-    if(!n||pw.length<4){msg("Mashq nomi va kamida 4 belgili parol kiriting.");return}
-    
-    if(!data.programs[p].exercises) data.programs[p].exercises=[];
-    data.programs[p].exercises.push({
-      id:Date.now(),
-      name:n,
-      desc:document.getElementById("exDesc").value,
-      sets:document.getElementById("exSets").value,
-      reps:document.getElementById("exReps").value,
-      rest:document.getElementById("exRest").value,
-      videoUrl:vUrl,
-      passwordHash:hash(pw)
-    });
-    save();
-    ["exName","exDesc","exSets","exReps","exRest","exPassword","exVideoUrl"].forEach(id=>document.getElementById(id).value="");
-    renderAdminExercises();
-    renderPrograms();
-    msg("Mashq va video havolasi saqlandi!");
-  }
-
-  window.renderAdminExercises = function() {
-    let ap = document.getElementById("adminExerciseList");
-    if(!ap) return;
-    ap.innerHTML=PROGRAMS.map(p=>`<h3 style="margin-top:16px">${escapeHtml(p)}</h3>`+((data.programs[p]?.exercises||[]).length?data.programs[p].exercises.map(e=>`<div class="exercise"><b>${escapeHtml(e.name)}</b><button class="danger" style="float:right;padding:7px 10px" onclick="deleteExercise('${p.replace(/'/g,"\\'")}',${e.id})">O‘chirish</button><div class="small">Set: ${escapeHtml(e.sets||"—")} · Takror: ${escapeHtml(e.reps||"—")}</div></div>`).join(""):'<div class="small">Mashq yo‘q</div>')).join("");
-  }
-
-  window.deleteExercise = function(p,id) {
-    if(!confirm("Ushbu mashq o‘chirilsinmi?"))return;
-    data.programs[p].exercises=data.programs[p].exercises.filter(e=>e.id!==id);
-    save();
-    renderAdminExercises();
-    renderPrograms();
-  }
-
-  window.changeAdmin = function() {
-    let p=document.getElementById("changeAdminPassword").value;
-    if(p.length<8){msg("Yangi parol kamida 8 belgi bo‘lsin.");return}
-    data.adminHash=hash(p);
-    save();
-    document.getElementById("changeAdminPassword").value="";
-    msg("Admin paroli almashtirildi.");
-  }
-
-  window.msg = function(t) { document.getElementById("adminMessage").textContent=t; }
-  window.escapeHtml = function(s) { return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-  window.safeUrl = function(s) { try{let u=new URL(s);return ["https:","http:"].includes(u.protocol)?u.href:"#"}catch(e){return "#"} }
-
-  let apSelect = document.getElementById("adminProgram");
-  if(apSelect) apSelect.addEventListener("change", renderAdminExercises);
-
-  loadDataFromCloud();
-</script>
-</body>
-</html>
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("Server xatosi");
+                const remoteData = await res.json();
+                if (remoteData && remoteData.exercises) {
+                    appState = remoteData;
+                    appState.serverUrl = url;
+                    saveLocalData();
+                    if (currentProgram) renderExercises(currentProgram);
+                }
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Server 
